@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="/" class="logo">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>ExpressPaq</span>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/" class="<%= page === 'home' ? 'active' : '' %>">Inicio</a></li>
+                    <li><a href="/servicios" class="<%= page === 'servicios' ? 'active' : '' %>">Servicios</a></li>
+                    <li><a href="/seguimiento" class="<%= page === 'seguimiento' ? 'active' : '' %>">Seguimiento</a></li>
+                    <li><a href="/contacto" class="<%= page === 'contacto' ? 'active' : '' %>">Contacto</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <%- body %>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-shipping-fast"></i> ExpressPaq</h3>
+                    <p>Su socio confiable en servicios de paquetería y logística profesional.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="/servicios">Envío Nacional</a></li>
+                        <li><a href="/servicios">Envío Internacional</a></li>
+                        <li><a href="/servicios">Envío Express</a></li>
+                        <li><a href="/servicios">Logística Empresarial</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +34 900 123 456</p>
+                        <p><i class="fas fa-envelope"></i> info@expresspaq.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Calle Principal 123, Madrid</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Horarios</h4>
+                    <div class="schedule">
+                        <p><strong>Lun - Vie:</strong> 8:00 - 20:00</p>
+                        <p><strong>Sábado:</strong> 9:00 - 14:00</p>
+                        <p><strong>Domingo:</strong> Cerrado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ExpressPaq. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

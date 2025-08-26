@@ -1,0 +1,161 @@
+<section class="page-header">
+    <div class="container">
+        <h1>Seguimiento de Paquetes</h1>
+        <p>Rastrea tu envío en tiempo real y conoce su ubicación exacta</p>
+    </div>
+</section>
+
+<section class="tracking-page">
+    <div class="container">
+        <div class="tracking-form-container">
+            <form class="tracking-form" action="/seguimiento" method="POST">
+                <div class="form-group">
+                    <label for="trackingNumber">Número de Seguimiento</label>
+                    <div class="input-with-button">
+                        <input type="text" id="trackingNumber" name="trackingNumber" 
+                               placeholder="Ej: PKG001" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <% if (error) { %>
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <%= error %>
+                </div>
+            <% } %>
+            
+            <% if (package) { %>
+                <div class="package-info">
+                    <div class="package-header">
+                        <h2>Información del Paquete</h2>
+                        <div class="package-id">ID: <%= package.id %></div>
+                    </div>
+                    
+                    <div class="package-details">
+                        <div class="detail-row">
+                            <div class="detail-item">
+                                <i class="fas fa-info-circle"></i>
+                                <div>
+                                    <label>Estado</label>
+                                    <span class="status status-<%= package.status.toLowerCase().replace(/ /g, '-') %>">
+                                        <%= package.status %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div>
+                                    <label>Fecha Estimada de Entrega</label>
+                                    <span><%= new Date(package.estimatedDelivery).toLocaleDateString('es-ES') %></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <label>Origen</label>
+                                    <span><%= package.origin %></span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-flag-checkered"></i>
+                                <div>
+                                    <label>Destino</label>
+                                    <span><%= package.destination %></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="current-location">
+                            <i class="fas fa-location-arrow"></i>
+                            <div>
+                                <label>Ubicación Actual</label>
+                                <span><%= package.currentLocation %></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tracking-timeline">
+                        <h3>Historial de Seguimiento</h3>
+                        <div class="timeline">
+                            <div class="timeline-item completed">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4>Paquete Recolectado</h4>
+                                    <p><%= package.origin %></p>
+                                    <span class="timeline-date">23/08/2025 - 10:30</span>
+                                </div>
+                            </div>
+                            
+                            <% if (package.status !== 'Entregado') { %>
+                                <div class="timeline-item active">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-truck"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>En Tránsito</h4>
+                                        <p><%= package.currentLocation %></p>
+                                        <span class="timeline-date">25/08/2025 - 14:20</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item pending">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Entrega Programada</h4>
+                                        <p><%= package.destination %></p>
+                                        <span class="timeline-date"><%= new Date(package.estimatedDelivery).toLocaleDateString('es-ES') %></span>
+                                    </div>
+                                </div>
+                            <% } else { %>
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Entregado</h4>
+                                        <p><%= package.destination %></p>
+                                        <span class="timeline-date">25/08/2025 - 16:45</span>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        
+        <div class="tracking-help">
+            <h3>¿Necesitas ayuda?</h3>
+            <div class="help-cards">
+                <div class="help-card">
+                    <i class="fas fa-question-circle"></i>
+                    <h4>¿Dónde encuentro mi número de seguimiento?</h4>
+                    <p>Tu número de seguimiento se encuentra en el recibo de envío o en el email de confirmación.</p>
+                </div>
+                <div class="help-card">
+                    <i class="fas fa-clock"></i>
+                    <h4>¿Cuándo se actualiza el estado?</h4>
+                    <p>La información se actualiza cada 2-4 horas durante el tránsito del paquete.</p>
+                </div>
+                <div class="help-card">
+                    <i class="fas fa-phone"></i>
+                    <h4>¿Tienes problemas?</h4>
+                    <p>Contáctanos al 900 123 456 o envíanos un mensaje desde nuestra página de contacto.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
